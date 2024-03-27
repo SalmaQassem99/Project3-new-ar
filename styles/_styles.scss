@@ -69,7 +69,7 @@ $border: 0.1875rem solid $green-3 !important;
   max-height: 3rem;
   aspect-ratio: 1;
   position: relative;
-  z-index: 100;
+  z-index: 1000;
   background: linear-gradient(to bottom, $yellow-3 2%, $yellow-2);
   color: $white-1;
   font-size: 1.25rem;
@@ -129,6 +129,7 @@ $border: 0.1875rem solid $green-3 !important;
     top: calc(100vh - (2 * $padding));
     transform: translateY(-100%);
     transition: 0.5s;
+    visibility: hidden;
 
     .fa-solid {
       &.hide {
@@ -187,11 +188,17 @@ $border: 0.1875rem solid $green-3 !important;
   padding: $padding;
   position: relative;
   overflow-y: auto;
-  visibility: hidden;
-  background-image: url("../media/images/background.svg");
   background-size: cover;
   background-position: 50% 100%;
+  visibility: hidden;
+  transform-origin: right top;
 
+  &.hideGame {
+    animation-name: hideGame;
+    animation-timing-function: linear;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+  }
   .head {
     height: 12%;
 
@@ -264,9 +271,9 @@ $border: 0.1875rem solid $green-3 !important;
       background-color: $white-2;
 
       .card {
-        padding: 3rem 1.5rem;
+        padding: 1.75rem 1.5rem;
         position: relative;
-        background-color: $white-1;
+        background-color: $white-7;
         border: none;
         box-shadow: 0 0.25rem 0.25rem 0 $shadow-1;
 
@@ -274,8 +281,7 @@ $border: 0.1875rem solid $green-3 !important;
           width: 100%;
           z-index: 100;
           font-family: MochiyPopPOne-Regular;
-          font-size: 9.6vh;
-          line-height: 10.5vh;
+          font-size: 7.6vh;
           text-align: center;
 
           @include mediaQuery($largeScreen_min_width) {
@@ -317,6 +323,8 @@ $border: 0.1875rem solid $green-3 !important;
           }
 
           .second-line-wrapper {
+            margin: 2.75vh 0;
+            color: $black-1;
             font-family: DG-3asomy-Regular;
 
             .sign {
@@ -655,6 +663,9 @@ $border: 0.1875rem solid $green-3 !important;
         margin: 0 auto;
         position: relative;
         top: -3vh;
+        img {
+          transform: scaleX(-1);
+        }
       }
 
       .content-card {
@@ -751,7 +762,15 @@ $border: 0.1875rem solid $green-3 !important;
     transform: translateZ(-1px) scaleX(1);
   }
 }
+@keyframes hideGame {
+  0% {
+    transform: scale(1);
+  }
 
+  100% {
+    transform: scale(0);
+  }
+}
 @keyframes scaleDown {
   0% {
     top: 50%;
